@@ -5,6 +5,12 @@ package com.wanabut.fashion;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+
+import org.apache.http.NameValuePair;
+import org.apache.http.message.BasicNameValuePair;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import com.wanabut.fashion.R.id;
 
@@ -38,6 +44,9 @@ public class adminkategoritambah_activity extends Activity implements
 	View vi;
 	ArrayList<String> id_parent = new ArrayList<String>();
 	ArrayList<String> nama_parent = new ArrayList<String>();
+	
+//	ArrayList<String> liststring = new ArrayList<String>();
+	List<NameValuePair> params = new ArrayList<NameValuePair>();
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -77,7 +86,9 @@ public class adminkategoritambah_activity extends Activity implements
 		deskripsi = etdeskripsi.getText().toString();
 		gambar = etgambar.getText().toString();
 		urutan = eturutan.getText().toString();
+		
 		parent = spn_parent.getSelectedItem().toString();
+//		int pr = nama_parent.indexOf(parent);
 		// status = cbstatus.getText().toString();
 
 		if (!nama.equals("") && !gambar.equals("") && !urutan.equals("")) {
@@ -88,31 +99,52 @@ public class adminkategoritambah_activity extends Activity implements
 						boolean isChecked) {
 					// TODO Auto-generated method stub
 					if (buttonView.isChecked()) {
-						status = cbstatus.getText().toString();
+						status = "1";
 					} else {
-						status = "Tidak " + cbstatus.getText().toString();
+						status = "0";
 						;
 					}
 				}
 			});
 
-			Toast.makeText(
-					this,
-					nama + "\n" + deskripsi + "\n" + gambar + "\n" + urutan
-							+ "\n" + parent + "\n" + status, Toast.LENGTH_LONG)
-					.show();
+//			Toast.makeText(
+//					this,
+//					nama + "\n" + deskripsi + "\n" + gambar + "\n" + urutan
+//							+ "\n" + pr + "\n" + status, Toast.LENGTH_LONG)
+//					.show();
+			
+			params.add(new BasicNameValuePair("nama", nama));
+			params.add(new BasicNameValuePair("deskripsi", deskripsi));
+			params.add(new BasicNameValuePair("gambar", gambar));
+			params.add(new BasicNameValuePair("urutan", urutan));
+			params.add(new BasicNameValuePair("status", status));
+			params.add(new BasicNameValuePair("parent", id_parent.get(nama_parent.indexOf(parent))));
+			
+			JSONObject json = crud.crud("insert/kategori", params);
+			
+			try {
+				if (json.getString("sukses") != null) {// cek apakah valid null
+					String res = json.getString("valid");// mengambil nilai json
+					if (res == "sukses") {// cek valid
+						Intent ak = new Intent(adminkategoritambah_activity.this, adminkategori_activity.class);// Berpindah
+						ak.putExtra("status", res);
+						startActivity(ak);// memulai activity
+					} else {
+						Toast.makeText(this, "Penyimpanan Gagal ",
+								Toast.LENGTH_LONG).show();// memunculkan popup
+					}
+				}
+			} catch (JSONException e) {
+				e.printStackTrace();
+			}
+			
 		}else{
 			Toast.makeText(this, "Pastikan nama, gambar, dan urutan tidak kosong!.", Toast.LENGTH_LONG).show();
 		}
-
-		// parent =
-
-		// if(){
-		//
-		//
-		// }
 	}
 
+	
+	
 	@Override
 	public void onItemSelected(AdapterView<?> arg0, View arg1, int arg2,
 			long arg3) {
