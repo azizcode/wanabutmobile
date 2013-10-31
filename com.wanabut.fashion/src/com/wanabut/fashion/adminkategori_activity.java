@@ -42,7 +42,7 @@ public class adminkategori_activity extends Activity {
 		// We populate the planets
 		List<NameValuePair> params = new ArrayList<NameValuePair>();
 		params.add(new BasicNameValuePair("halaman", halaman));//nama POST		
-		JSONObject json = crud.viewdata("kategori", params);
+		JSONObject json = crud.crud("kategori", params);
 		button1 =(Button)findViewById(R.id.button_prev);
 		button2 =(Button)findViewById(R.id.button_next);
 		

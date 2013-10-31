@@ -40,7 +40,7 @@ public class Login extends Activity implements OnClickListener {
 				.toString()));
 		params.add(new BasicNameValuePair("password", password.getText()
 				.toString()));
-		JSONObject json = crud.viewdata("login", params);
+		JSONObject json = crud.crud("login", params);
 		try {
 			if (json.getString("valid") != null) {// cek apakah valid null
 				String res = json.getString("valid");// mengambil nilai json
