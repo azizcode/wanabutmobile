@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AbsoluteLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/AbsoluteLayout1"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="10dp" >
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Data Barang" />
+
+    <ListView
+        android:id="@+id/listView_usermenu"
+        android:layout_width="match_parent"
+        android:layout_height="296dp"
+        android:layout_y="38dp" >
+
+    </ListView>
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="" />
+
+    <Button
+        android:id="@+id/button_caribarang"
+        android:layout_width="192dp"
+        android:layout_height="wrap_content"
+        android:layout_x="60dp"
+        android:layout_y="361dp"
+        android:text="Cari barang" />
+
+</AbsoluteLayout>

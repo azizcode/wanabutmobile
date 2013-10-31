@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AbsoluteLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <ListView
+        android:id="@+id/listView_admin"
+        android:layout_width="294dp"
+        android:layout_height="283dp"
+        android:layout_x="15dp"
+        android:layout_y="51dp" >
+    </ListView>
+
+</AbsoluteLayout>
