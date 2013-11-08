@@ -45,7 +45,9 @@ public class adminkategori_activity extends Activity {
 		JSONObject json = crud.crud("kategori", params);
 		button1 =(Button)findViewById(R.id.button_prev);
 		button2 =(Button)findViewById(R.id.button_next);
-		
+		if(this.getIntent().getStringExtra("status") !=null){
+			Toast.makeText(this, this.getIntent().getStringExtra("status"), Toast.LENGTH_LONG).show();
+		}
 		try {
 			if (json.getString("id_kategori").equals("kosong")) {
 				listkat.add(createPlanet("kat", "Tidak ada data."));
@@ -53,6 +55,7 @@ public class adminkategori_activity extends Activity {
 				button1.setVisibility(vv.GONE);
 				button2.setVisibility(vv.GONE);//menyembunyikan button
 //				button2.setVisibility(vv.VISIBLE);//memunculkan button
+				
 			}else{
 //				listkat.add(createPlanet("kat", halaman));
 				button1.setVisibility(vv.VISIBLE);

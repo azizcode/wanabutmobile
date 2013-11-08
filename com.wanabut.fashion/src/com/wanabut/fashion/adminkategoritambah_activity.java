@@ -88,31 +88,15 @@ public class adminkategoritambah_activity extends Activity implements
 		urutan = eturutan.getText().toString();
 		
 		parent = spn_parent.getSelectedItem().toString();
-//		int pr = nama_parent.indexOf(parent);
-		// status = cbstatus.getText().toString();
 
 		if (!nama.equals("") && !gambar.equals("") && !urutan.equals("")) {
-			cbstatus.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-
-				@Override
-				public void onCheckedChanged(CompoundButton buttonView,
-						boolean isChecked) {
-					// TODO Auto-generated method stub
-					if (buttonView.isChecked()) {
-						status = "1";
-					} else {
-						status = "0";
-						;
-					}
-				}
-			});
-
-//			Toast.makeText(
-//					this,
-//					nama + "\n" + deskripsi + "\n" + gambar + "\n" + urutan
-//							+ "\n" + pr + "\n" + status, Toast.LENGTH_LONG)
-//					.show();
 			
+			if (cbstatus.isChecked()) {
+				status = "1";
+			} else {
+				status = "0";
+			}
+
 			params.add(new BasicNameValuePair("nama", nama));
 			params.add(new BasicNameValuePair("deskripsi", deskripsi));
 			params.add(new BasicNameValuePair("gambar", gambar));
@@ -123,21 +107,20 @@ public class adminkategoritambah_activity extends Activity implements
 			JSONObject json = crud.crud("insert/kategori", params);
 			
 			try {
-				if (json.getString("sukses") != null) {// cek apakah valid null
-					String res = json.getString("valid");// mengambil nilai json
-					if (res == "sukses") {// cek valid
+				if (json.getString("status") != null) {// cek apakah valid null
+					String res = json.getString("status");// mengambil nilai json
+					if (res.equals("sukses")) {// cek valid
 						Intent ak = new Intent(adminkategoritambah_activity.this, adminkategori_activity.class);// Berpindah
-						ak.putExtra("status", res);
+						ak.putExtra("status", "Penyimpanan Sukses");
 						startActivity(ak);// memulai activity
 					} else {
-						Toast.makeText(this, "Penyimpanan Gagal ",
+						Toast.makeText(this, res,
 								Toast.LENGTH_LONG).show();// memunculkan popup
 					}
 				}
 			} catch (JSONException e) {
 				e.printStackTrace();
 			}
-			
 		}else{
 			Toast.makeText(this, "Pastikan nama, gambar, dan urutan tidak kosong!.", Toast.LENGTH_LONG).show();
 		}
