@@ -13,26 +13,26 @@
 
     <Button
         android:id="@+id/btn_tmbh"
-        android:layout_width="228dp"
+        android:layout_width="296dp"
         android:layout_height="wrap_content"
-        android:layout_x="42dp"
-        android:layout_y="6dp"
+        android:layout_x="11dp"
+        android:layout_y="9dp"
         android:text="Tambah" />
 
     <Button
         android:id="@+id/button_prev"
         android:layout_width="120dp"
         android:layout_height="wrap_content"
-        android:layout_x="29dp"
-        android:layout_y="372dp"
+        android:layout_x="20dp"
+        android:layout_y="374dp"
         android:text="Prev" />
 
     <Button
         android:id="@+id/button_next"
         android:layout_width="120dp"
         android:layout_height="wrap_content"
-        android:layout_x="164dp"
-        android:layout_y="373dp"
+        android:layout_x="181dp"
+        android:layout_y="375dp"
         android:text="Next" />
 
 </AbsoluteLayout>
